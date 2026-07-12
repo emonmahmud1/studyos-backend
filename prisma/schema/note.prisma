@@ -1,0 +1,20 @@
+model Note {
+  id           String   @id @default(cuid())
+  title        String
+  content      String   @db.Text
+  folder       String   @default("General")
+  pinned       Boolean  @default(false)
+  tags         String[]
+  lastModified DateTime @default(now())
+  userId       String
+  subjectId    String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject Subject? @relation(fields: [subjectId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([subjectId])
+  @@index([pinned])
+}

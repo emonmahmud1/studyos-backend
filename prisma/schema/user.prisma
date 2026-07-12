@@ -1,0 +1,29 @@
+model User {
+  id               String   @id @default(cuid())
+  email            String   @unique
+  password         String
+  name             String
+  avatar           String?
+  role             Role     @default(USER)
+  // Study OS gamification
+  xp               Int      @default(0)
+  level            Int      @default(1)
+  streak           Int      @default(0)
+  lastActiveDate   String?
+  // Auth tokens
+  refreshToken     String?
+  resetToken       String?
+  resetTokenExpiry DateTime?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  subjects   Subject[]
+  notes      Note[]
+  tasks      KanbanTask[]
+  decks      FlashcardDeck[]
+  events     CalendarEvent[]
+  resources  ResourceItem[]
+  sessions   PomodoroSession[]
+
+  @@index([email])
+}

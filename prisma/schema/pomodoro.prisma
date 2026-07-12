@@ -1,0 +1,13 @@
+model PomodoroSession {
+  id        String       @id @default(cuid())
+  mode      PomodoroMode @default(FOCUS)
+  duration  Int          // in minutes
+  completed Boolean      @default(false)
+  userId    String
+  createdAt DateTime     @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([createdAt])
+}

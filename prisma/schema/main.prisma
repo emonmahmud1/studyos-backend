@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Enums ──────────────────────────────────────────────────────────────────
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum TaskStatus {
+  TODO
+  PROGRESS
+  REVIEW
+  COMPLETED
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum EventType {
+  EXAM
+  ASSIGNMENT
+  STUDY
+  OTHER
+}
+
+enum ResourceType {
+  PDF
+  VIDEO
+  DOCUMENT
+  ARCHIVE
+}
+
+enum CardStatus {
+  AGAIN
+  HARD
+  GOOD
+  EASY
+}
+
+enum PomodoroMode {
+  FOCUS
+  SHORT_BREAK
+  LONG_BREAK
+}
